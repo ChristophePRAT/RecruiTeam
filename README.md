@@ -25,10 +25,18 @@
    ```
    Invoke-RestMethod -Uri "http://localhost:5000/start" -Method POST -ContentType "application/json" -Body '{"control_points_enabled": false}'
    ```
-    With the control point method : 
+    With the control point method :
     ```
     Invoke-RestMethod -Uri "http://localhost:5000/start" -Method POST -ContentType "application/json" -Body '{"control_points_enabled": true}'
     ```
+
+### Code Submission and Evaluation
+
+Once the server is running, you can submit your code to the `/submit_code` endpoint for evaluation. The system uses an AI model to grade your code based on correctness, style, and potential security vulnerabilities.
+
+The web client uses that endpoint to submit code and receive evaluations.
+
+The response will contain the AI's evaluation of your code.
 ## Overview
 
 This document provides a comprehensive mathematical analysis of the eye tracking anti-cheat system implemented in `ca_clean.py`. The system uses objective behavioral metrics, statistical analysis, and control point validation to detect cheating attempts in real-time.
@@ -188,7 +196,7 @@ During the first 30 seconds, the system establishes individual baselines for eac
 ```python
 baseline_metrics[M] = {
     'mean': μₘ,
-    'std': σₘ, 
+    'std': σₘ,
     'min': min(M₁, M₂, ..., Mₙ),
     'max': max(M₁, M₂, ..., Mₙ)
 }
@@ -206,7 +214,7 @@ Z_M = |M_current - μₘ| / σₘ
 **Interpretation**:
 - Z < 1: Within normal range (68% confidence interval)
 - 1 ≤ Z < 2: Moderate deviation (95% confidence interval)
-- 2 ≤ Z < 3: Significant deviation (99.7% confidence interval)  
+- 2 ≤ Z < 3: Significant deviation (99.7% confidence interval)
 - Z ≥ 3: Extreme deviation (> 99.7% confidence interval)
 
 ### Risk Score Calculation
@@ -307,7 +315,7 @@ This combination provides both stability (SMA) and responsiveness (EXP).
 weights = {
     'off_screen_percentage': 0.40,  # Highest priority
     'fixation_clustering': 0.20,    # Important for focus analysis
-    'spatial_dispersion': 0.15,     # Movement pattern analysis  
+    'spatial_dispersion': 0.15,     # Movement pattern analysis
     'velocity_variance': 0.15,      # Consistency checking
     'screen_coverage': 0.00,        # Disabled (edge case metric)
     'gaze_entropy': 0.10           # Randomness analysis
@@ -324,7 +332,7 @@ Risk_final = Σ (Weight_i × Risk_i)
 ```
 Classification = {
     "Low Risk":      Risk_final < 30%
-    "Medium Risk":   30% ≤ Risk_final < 60%  
+    "Medium Risk":   30% ≤ Risk_final < 60%
     "High Risk":     60% ≤ Risk_final < 80%
     "Critical":      Risk_final ≥ 80%
 }
@@ -348,7 +356,7 @@ smoothed_positions = deque(maxlen=15)  # Last 15 smoothed positions
 class ControlPoint:
     timestamp: float
     expected_position: Tuple[int, int]
-    predicted_position: Tuple[int, int] 
+    predicted_position: Tuple[int, int]
     distance_error: float
     is_valid: bool
 ```
@@ -381,7 +389,7 @@ risk_score = min(100, max(0, calculated_risk))  # Clamp to [0, 100]
 ### 1. Gaussian Distribution
 The system assumes baseline metrics follow approximately normal distributions, justifying the use of Z-scores.
 
-### 2. Independence  
+### 2. Independence
 Metrics are assumed to be conditionally independent given the user's behavior state.
 
 ### 3. Stationarity
