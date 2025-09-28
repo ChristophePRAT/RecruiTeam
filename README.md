@@ -1,34 +1,67 @@
 # Eye Tracking Anti-Cheat System - Mathematical Documentation
 
-## Getting Started
+## Full Project Setup
 
-### Installation
+This project consists of three main components that must be run simultaneously:
 
-1. **Backend (Python Server)**:
-   ```bash
-   cd EyeTracking
-   pip install -r ../requirements.txt
-   ```
+1.  **Eye Tracking Anti-Cheat System (Backend)**: A Python server that provides eye-tracking and anti-cheat functionalities.
+2.  **Code Interview (Frontend)**: A Next.js application for conducting coding interviews.
+3.  **Enterprise Recruiter (Frontend)**: A Vite application for managing job applicants.
 
+### 1. Eye Tracking Anti-Cheat System (Backend)
 
-### Running the System
+**Installation:**
 
-1. **Start the Python Backend Server**:
-   ```bash
-   cd EyeTracking
-   # Launch the server
-   python main.py
-   ```
-   The server will run on `http://localhost:5000`
+```bash
+# From the root directory
+cd EyeTracking
+pip install -r requirements.txt
+```
 
-    Without the control point method :
-   ```
-   Invoke-RestMethod -Uri "http://localhost:5000/start" -Method POST -ContentType "application/json" -Body '{"control_points_enabled": false}'
-   ```
-    With the control point method :
-    ```
-    Invoke-RestMethod -Uri "http://localhost:5000/start" -Method POST -ContentType "application/json" -Body '{"control_points_enabled": true}'
-    ```
+**Running the server:**
+
+```bash
+# From the EyeTracking directory
+python main.py
+```
+
+The server will run on `http://localhost:4000`.
+
+### 2. Code Interview (Frontend)
+
+**Installation:**
+
+```bash
+# From the root directory
+cd code-interview
+npm install
+```
+
+**Running the development server:**
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:3000`.
+
+### 3. Enterprise Recruiter (Frontend)
+
+**Installation:**
+
+```bash
+# From the root directory
+cd enterprise-recruiter-main
+npm install
+```
+
+**Running the development server:**
+
+```bash
+npm run dev
+```
+
+This application will also run on a local port, likely `http://localhost:5173` (Vite's default). Check the output of the `npm run dev` command for the exact URL.
 
 ### Code Submission and Evaluation
 
