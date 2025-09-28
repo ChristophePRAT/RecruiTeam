@@ -806,8 +806,56 @@ def stop_tracking():
 
 @app.route('/status', methods=['GET'])
 def get_status():
-    global tracking_active, session_summary
+    global tracking_active, session_summary, code_comments, code_score
     return jsonify({'tracking_active': tracking_active, 'session_summary': session_summary, 'code_score': code_score, 'code_comments': code_comments }), 200
+
+@app.route('/pretty', methods=['GET'])
+def pretty():
+    global tracking_active, session_summary, code_comments, code_score
+    html = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background-color: #f5f5f5; }
+            .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .header { text-align: center; color: #333; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+            .section { margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 5px; }
+            .score { font-size: 48px; text-align: center; color: #2ecc71; margin: 20px 0; }
+            .label { font-weight: bold; color: #666; }
+            pre { background: #f1f1f1; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Code Evaluation Report</h1>
+            </div>
+
+            <div class="section">
+                <h2>Code Score</h2>
+                <div class="score">{code_score}/100</div>
+            </div>
+
+            <div class="section">
+                <h2>Code Comments</h2>
+                <pre>{code_comments}</pre>
+            </div>
+
+            <div class="section">
+                <h2>Session Summary</h2>
+                <pre>{session_summary}</pre>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    return html.format(
+        code_score=code_score,
+        code_comments=code_comments,
+        session_summary=session_summary
+    )
+
 
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=4000)
