@@ -34,6 +34,8 @@ session_summary = {}
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 client = OpenAI()
+code_score = 0
+code_comments = ""
 
 # Global variables for tracking
 estimator = None
@@ -763,6 +765,8 @@ class CodeEvent(BaseModel):
 
 @app.route('/submit_code', methods=['POST'])
 def submit_code():
+    global code_score
+    global code_comments
     print("submit_code")
     data = request.json
 
@@ -787,6 +791,8 @@ def submit_code():
 
         event = response.output_parsed
         print(event)
+        code_score = event.grade
+        code_comments = event.comments
         return jsonify({'evaluation': event})
 
     except Exception as e:
@@ -801,7 +807,7 @@ def stop_tracking():
 @app.route('/status', methods=['GET'])
 def get_status():
     global tracking_active, session_summary
-    return jsonify({'tracking_active': tracking_active, 'session_summary': session_summary}), 200
+    return jsonify({'tracking_active': tracking_active, 'session_summary': session_summary, 'code_score': code_score, 'code_comments': code_comments }), 200
 
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=4000)
