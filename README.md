@@ -9,7 +9,7 @@ The submitted project is a B2B web-based applicant management system designed fo
 
 # Technology Stack
 - Web Application Framework: **Vite (with Lovable)**
-- Code grading system: **OpenAI**
+- Interview Code grading system: **OpenAI**
 - Ideas for the video using the github repository: **Dust**
 
 ---
