@@ -9,6 +9,8 @@ The submitted project is a B2B web-based applicant management system designed fo
 
 # Technology Stack
 - Web Application Framework: **Vite (with Lovable)**
+- Code grading system: **OpenAI**
+- Ideas for the video using the github repository: **Dust**
 
 ---
 
@@ -16,17 +18,17 @@ The submitted project is a B2B web-based applicant management system designed fo
 # Core Functionality
 
 ## Applicant Tracking via Kanban
-Each open job posting is associated with a 4-stage Kanban board.  
+Each open job posting is associated with a 4-stage Kanban board.
 
 In the first stage, all applicants are listed and automatically ranked based on their CV.
 
 ## AI Voice Agent Interview
-In the second stage, an AI-powered voice agent calls the applicant. (see second repo)  
+In the second stage, an AI-powered voice agent calls the applicant. (see second repo)
 
 The purpose of this interview is to evaluate the applicant’s motivation for the role.
 
 ## Video Interview with Anti-Cheating System
-Applicants who advance proceed to a video interview. (see third repo)  
+Applicants who advance proceed to a video interview. (see third repo)
 
 The interview integrates an in-house developed eye-tracking software to ensure authenticity and prevent cheating.
 
@@ -36,12 +38,12 @@ Applicants who successfully pass all stages are considered to have completed the
 # Step 1: Installation and Setup
 
 ### Option 1: Access Live Version
-The Web App is live on Vercel:  
-https://enterprise-recruiter.vercel.app/  
+The Web App is live on Vercel:
+https://enterprise-recruiter.vercel.app/
 
-To access it with existing data, use:  
-- **username:** patrick.trost@whu.edu  
-- **password:** abcdef  
+To access it with existing data, use:
+- **username:** patrick.trost@whu.edu
+- **password:** abcdef
 
 ### Option 2: Run Locally
 ```bash
