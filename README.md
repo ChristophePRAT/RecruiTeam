@@ -4,17 +4,6 @@ The submitted project is a B2B web-based applicant management system designed fo
 
 ---
 
-
----
-
-# Technology Stack
-- Web Application Framework: **Vite (with Lovable)**
-- Interview Code grading system: **OpenAI**
-- Ideas for the video using the github repository: **Dust**
-
----
-
-
 # Core Functionality
 
 ## Applicant Tracking via Kanban
@@ -34,6 +23,15 @@ The interview integrates an in-house developed eye-tracking software to ensure a
 
 ## Completion of the Application Process
 Applicants who successfully pass all stages are considered to have completed the structured application pipeline.
+
+---
+
+# Partner Technology Stack
+- Web Application Framework: **Vite (with Lovable)**
+- Interview Code grading system: **OpenAI**
+- Ideas for the video using the github repository: **Dust**
+
+---
 
 # Step 1: Installation and Setup
 
